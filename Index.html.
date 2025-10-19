@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worldwide Carnage Wrestling</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Intro Animation -->
+  <div id="intro">
+    <h1 class="intro-logo">WORLDWIDE CARNAGE WRESTLING</h1>
+  </div>
+
+  <!-- Background YouTube Player -->
+  <iframe id="bg-music" width="0" height="0" 
+    src="https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=REPLACE_WITH_VIDEO_ID"
+    frameborder="0" allow="autoplay">
+  </iframe>
+
+  <!-- Navigation -->
+  <header>
+    <h2>WORLDWIDE CARNAGE WRESTLING</h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="news.html">News</a>
+      <a href="bios.html">Bios</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Hub -->
+  <main>
+    <section class="brand-grid">
+      <a href="shop.html#xcpw" class="brand-box">XCPW</a>
+      <a href="shop.html#mpw" class="brand-box">MPW</a>
+      <a href="shop.html#pwr" class="brand-box">PWR</a>
+      <a href="shop.html#battleground" class="brand-box">Battleground MMA</a>
+      <a href="shop.html#wcw" class="brand-box">WCW</a>
+      <a href="shop.html#carnage" class="brand-box">Carnage Multiverse</a>
+    </section>
+  </main>
+
+  <!-- Footer Music Bar -->
+  <footer>
+    <p>Now Playing: <span id="theme-name">LXXK DEAD - ScarLxrd</span></p>
+    <div class="theme-bar">
+      <button onclick="changeTheme('lxxk_dead')">LXXK DEAD</button>
+      <button onclick="changeTheme('demons_kiss')">Demon’s Kiss</button>
+      <button onclick="changeTheme('divine_intervention')">Divine Intervention</button>
+      <button onclick="changeTheme('carnage_eternal')">Carnage Eternal</button>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
