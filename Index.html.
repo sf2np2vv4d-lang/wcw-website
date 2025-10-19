@@ -1,13 +1,10 @@
 <!-- 📰 LIVE WRESTLING NEWS FEED -->
 <section id="news-ticker">
   <div class="ticker-title">🩸 CARNAGE RUMOR WIRE 🩸</div>
-  <marquee behavior="scroll" direction="left" scrollamount="6">
-    🚨 AJ “F’N” Andrews rumored to defend the Demon Throne at Friday Night Blood Pit • 
-    The Great Divine calls out Kenzo Blackheart for unfinished business • 
-    MPW: Baptized in Blood set to feature intergender deathmatch chaos • 
-    PWR and XCPW collaboration teased for 2026 mega event • 
-    New Carnage Multiverse Merch dropping soon — custom belts incoming 🔥
-  </marquee>
+<section id="news-ticker">
+  <div class="ticker-title">🩸 CARNAGE RUMOR WIRE 🩸</div>
+  <div id="news-container">Loading latest headlines...</div>
+</section>
 </section>
 <!DOCTYPE html>
 <html lang="en">
