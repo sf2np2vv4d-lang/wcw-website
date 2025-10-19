@@ -66,3 +66,6 @@
   <script src="script.js"></script>
 </body>
 </html>
+<!-- ⚡ BREAKING NEWS SOUND -->
+<audio id="breaking-sound" src="breaking-news.mp3" preload="auto"></audio>
+<div id="flash-overlay" class="hidden"></div>
