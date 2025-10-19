@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Carnage Control Room</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: radial-gradient(circle, #120015, #000);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      text-align: center;
+      padding-top: 80px;
+    }
+    .admin-box {
+      max-width: 600px;
+      margin: auto;
+      background: #1a001f;
+      padding: 20px;
+      border: 2px solid #ff004c;
+      box-shadow: 0 0 25px rgba(255,0,80,0.4);
+      border-radius: 10px;
+    }
+    input, button, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      background: #2a003a;
+      border: 1px solid #ff004c;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+    button {
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #ff004c;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-box">
+    <h1>🩸 Carnage Control Room 🩸</h1>
+    <p>Type a new rumor or headline below:</p>
+
+    <textarea id="new-headline" rows="3" placeholder="Example: AJ Andrews challenges The Surgeon to a Deathrite match..."></textarea>
+    <button id="add-headline">Add Headline</button>
+
+    <p style="margin-top:20px;">Current Rumors:</p>
+    <ul id="headline-list"></ul>
+  </div>
+
+  <script>
+    async function fetchNews() {
+      const res = await fetch('news.json');
+      const data = await res.json();
+      const list = document.getElementById('headline-list');
+      list.innerHTML = data.map(h => `<li>${h}</li>`).join('');
+    }
+
+    async function addHeadline() {
+      const text = document.getElementById('new-headline').value.trim();
+      if (!text) return alert("Type something first!");
+      const res = await fetch('/.netlify/functions/addNews', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ headline: text })
+      });
+      if (res.ok) {
+        alert("Headline added successfully!");
+        document.getElementById('new-headline').value = '';
+        fetchNews();
+      } else {
+        alert("Failed to add headline.");
+      }
+    }
+
+    document.getElementById('add-headline').addEventListener('click', addHeadline);
+    fetchNews();
+  </script>
+</body>
+</html>
