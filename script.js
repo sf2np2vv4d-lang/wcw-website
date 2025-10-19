@@ -90,3 +90,45 @@ async function checkBreakingNews() {
 // Check once on load, then every 60 seconds
 checkBreakingNews();
 setInterval(checkBreakingNews, 60000);
+// ⚡ SOUND + FLASH STINGER
+function playBreakingStinger() {
+  const sound = document.getElementById("breaking-sound");
+  const flash = document.getElementById("flash-overlay");
+
+  // Play sound
+  sound.currentTime = 0;
+  sound.play().catch(() => console.log("User interaction required for sound."));
+
+  // Trigger flash overlay
+  flash.classList.add("active");
+  setTimeout(() => flash.classList.remove("active"), 1000);
+}
+
+// Modify Breaking News function to trigger stinger
+async function checkBreakingNews() {
+  try {
+    const response = await fetch("news.json");
+    const latestNews = await response.json();
+    const storedNews = JSON.parse(localStorage.getItem("lastNews") || "[]");
+
+    const newHeadlines = latestNews.filter(h => !storedNews.includes(h));
+
+    if (newHeadlines.length > 0) {
+      localStorage.setItem("lastNews", JSON.stringify(latestNews));
+
+      const breakingBar = document.getElementById("breaking-news");
+      const breakingText = document.getElementById("breaking-text");
+
+      breakingText.textContent = "BREAKING NEWS: " + newHeadlines[0];
+      breakingBar.classList.remove("hidden");
+
+      playBreakingStinger(); // ⚡🔥 play flash + sound
+
+      setTimeout(() => {
+        breakingBar.classList.add("hidden");
+      }, 8000);
+    }
+  } catch (err) {
+    console.error("Error checking breaking news:", err);
+  }
+}
