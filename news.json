@@ -1,3 +1,7 @@
+<!-- ⚡ BREAKING NEWS POPUP -->
+<div id="breaking-news" class="hidden">
+  <span id="breaking-text">Breaking News: New update from the Carnage Rumor Wire!</span>
+</div>
 [
   "🚨 AJ “F’N” Andrews rumored to defend the Demon Throne at Friday Night Blood Pit",
   "💀 The Great Divine vows to ‘purify’ the MPW roster in Baptized in Blood",
