@@ -43,3 +43,20 @@ setTimeout(() => {
   const intro = document.getElementById("intro");
   if (intro) intro.remove();
 }, 5500);
+// 📰 DYNAMIC NEWS FEED
+async function loadNews() {
+  try {
+    const response = await fetch("news.json");
+    const headlines = await response.json();
+    const container = document.getElementById("news-container");
+
+    container.innerHTML = `<marquee behavior="scroll" direction="left" scrollamount="6">
+      ${headlines.join(" • ")}
+    </marquee>`;
+  } catch (error) {
+    console.error("Failed to load news feed:", error);
+    document.getElementById("news-container").innerText = "Unable to load latest rumors.";
+  }
+}
+
+loadNews();
