@@ -21,7 +21,6 @@ themeButtons.forEach(button => {
     applyTheme(theme);
   });
 });
-
 function applyTheme(theme) {
   if (theme === "dark") {
     document.body.style.background = "radial-gradient(circle at center, #1a001a, #000)";
@@ -60,3 +59,34 @@ async function loadNews() {
 }
 
 loadNews();
+// ⚡ BREAKING NEWS ALERT
+async function checkBreakingNews() {
+  try {
+    const response = await fetch("news.json");
+    const latestNews = await response.json();
+    const storedNews = JSON.parse(localStorage.getItem("lastNews") || "[]");
+
+    // Compare current and stored news
+    const newHeadlines = latestNews.filter(h => !storedNews.includes(h));
+
+    if (newHeadlines.length > 0) {
+      localStorage.setItem("lastNews", JSON.stringify(latestNews));
+
+      const breakingBar = document.getElementById("breaking-news");
+      const breakingText = document.getElementById("breaking-text");
+
+      breakingText.textContent = "BREAKING NEWS: " + newHeadlines[0];
+      breakingBar.classList.remove("hidden");
+
+      setTimeout(() => {
+        breakingBar.classList.add("hidden");
+      }, 8000);
+    }
+  } catch (err) {
+    console.error("Error checking breaking news:", err);
+  }
+}
+
+// Check once on load, then every 60 seconds
+checkBreakingNews();
+setInterval(checkBreakingNews, 60000);
